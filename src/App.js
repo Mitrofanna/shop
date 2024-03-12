@@ -20,7 +20,13 @@ function App() {
         </ul>
       </header>
       <main className="content">
-        <h1 className="content__title">Все товары</h1>
+        <div class="content__wrapper">
+          <h1 className="content__title">Все товары</h1>
+          <div>
+            <input type="text" placeholder="Поиск..." />
+            <img></img>
+          </div>
+        </div>
         <section className="content__cards">
           <div className="card">
             <img className="card__img"></img>
@@ -30,7 +36,7 @@ function App() {
                 <p>Цена :</p>
                 <b>1200 p.</b>
               </div>
-              <button>Купить</button>
+              <button className="card__button">Купить</button>
             </div>
           </div>
           <div className="card">

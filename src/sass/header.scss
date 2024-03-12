@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+  
+    &__right {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+  
+    &__title {
+      padding: 0;
+    }
+  
+    &__name {
+      margin: 0;
+    }
+  }

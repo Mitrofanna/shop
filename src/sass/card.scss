@@ -1,0 +1,15 @@
+.card {
+    border: 1px solid #f2f2f2;
+    border-radius: 20px;
+    padding: 20px;
+    width: 210px;
+  
+    &__buy {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__button {
+        background-color: green;
+    }
+  }

@@ -1,55 +1,5 @@
-body {
-  margin: 0;
-  font-family: system-ui;
-    
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #222;
-}
+@import "sass/global.scss";
+@import "sass/header.scss";
+@import "sass/content.scss";
+@import "sass/card.scss";
 
-.wrapper {
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
-  max-width: 1080px;
-  margin: 50px auto;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-
-  &__right {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-
-  &__title {
-    padding: 0;
-  }
-
-  &__name {
-    margin: 0;
-  }
-}
-
-.content {
-  &__cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-}
-
-.card {
-  border: 1px solid #222;
-  border-radius: 20px;
-  padding: 20px;
-  width: 210px;
-
-  &__buy {
-    display: flex;
-    justify-content: space-between;
-  }
-}
