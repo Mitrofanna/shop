@@ -3,13 +3,43 @@
     border-radius: 20px;
     padding: 20px;
     width: 210px;
+
+    &:hover {
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.04);
+    }
   
     &__buy {
       display: flex;
       justify-content: space-between;
     }
 
+    &__price {
+      margin: 0;
+    }
+
     &__button {
-        background-color: green;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    &__button:hover {
+      transform: scale(1.2);
+    }
+
+    &__button-default {
+      border: 2px solid #d3d3d3;
+      background-color: transparent;
+      background: url('../../public/img/svg/plus.svg') no-repeat center;
+    }
+
+    &__button-active {
+      border: none;
+      background: url('../../public/img/svg/active-button.svg') no-repeat center;
+    }
+
+    &__icon {
+      padding-top: 3px;
     }
   }

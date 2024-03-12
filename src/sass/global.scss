@@ -14,3 +14,28 @@ body {
   max-width: 1080px;
   margin: 50px auto;
 }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.button {
+  padding: 15px;
+  background-color: #9DD458;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: #7FAD45;
+  }
+}
