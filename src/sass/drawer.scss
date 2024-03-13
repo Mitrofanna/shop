@@ -6,6 +6,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
+    overflow: auto;
 
     &__block {
         display: flex;
@@ -22,6 +23,7 @@
 
     &__list {
         flex: 1;
+        overflow: auto;
     }
 
     &__item {
@@ -77,11 +79,22 @@
 
     &__total-button {
         position: relative;
+
+        &:hover {
+            .drawer__arrow {
+                transform: translateX(5px);
+            }
+        }
     }
 
     &__arrow {
         position:absolute;
         top: 15px;
         right: 25px;
+    }
+
+    &__title-wrapper {
+        display: flex;
+        justify-content: space-between;
     }
 }
