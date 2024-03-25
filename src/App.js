@@ -45,6 +45,7 @@ function App() {
             price={item.price}
             imageUrl={item.imageUrl}
             onClickAddCart={() => console.log('add to cart')}
+            onClickFavorite={() => console.log('add favorite')}
           />
           ))}
         </section>
