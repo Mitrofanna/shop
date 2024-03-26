@@ -9,7 +9,7 @@ function Card(props) {
 
     return (
         <div className="card">
-            <img className="card__img" src={props.imageUrl} width="133" height="112" alt="Изображение товара"></img>
+            <img className="card__img" src={props.imageUrl} width="100" height="140" alt="Изображение товара"></img>
             <h4 className="card__title">{props.title}</h4>
             <div className="card__buy">
               <div className="card__price-wrapper">
