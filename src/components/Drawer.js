@@ -1,11 +1,11 @@
-function Drawer() {
+function Drawer(props) {
     return (
-        <aside style={{display: 'none'}} className="drawer">
+        <aside className="drawer">
         <div className="drawer__block">
           <div className="drawer__title-wrapper">
             <h2 className="drawer__title">Корзина</h2>
-            <button className="drawer__button drawer__button-delete">
-                    <span className="visually-hidden">Закрыть корзину.</span>
+            <button className="drawer__button drawer__button-delete" onClick={props.onCloseCart}>
+              <span className="visually-hidden">Закрыть корзину.</span>
             </button>
           </div>
           <div className="drawer__list">

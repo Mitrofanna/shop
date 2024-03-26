@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Drawer from "./components/Drawer";
@@ -24,10 +25,13 @@ const allCards = [
 ]
 
 function App() {
+
+  const [cartOpened, setCartOpened] = useState(false);
+
   return (
     <div className="wrapper">
-      <Drawer />
-      <Header />
+      {cartOpened && <Drawer onCloseCart={() => setCartOpened(false)}/>}
+      <Header onClickCart={() => setCartOpened(true)} />
       <main className="content">
         <div className="content__wrapper">
           <h1 className="content__title">Все товары</h1>
