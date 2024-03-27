@@ -7,6 +7,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [cartOpened, setCartOpened] = useState(false);
+  const [searchItems, setSearchItems] = useState('');
 
   useEffect(() => {
     fetch('https://660317272393662c31ce874c.mockapi.io/items').then(res =>{
@@ -16,25 +17,30 @@ function App() {
     });
   }, []);
 
-  const onAddCart = (obj) => {
-    setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
+  const onAddCart = (obj) => {  
+      setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
   };
   
-  console.log(cartItems);
+  const onSearchItems = (event) => {
+    setSearchItems(event.target.value);
+  };
+
   return (
     <div className="wrapper">
       {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)}/>}
       <Header onClickCart={() => setCartOpened(true)} />
       <main className="content">
         <div className="content__wrapper">
-          <h1 className="content__title">Все товары</h1>
+          <h1 className="content__title">{searchItems ? `Поиск по запросу: ${searchItems}` : `Все товары`}</h1>
           <div className="search">
-            <input className="search__input" type="text" placeholder="Поиск..." />
+            <input className="search__input" type="text" placeholder="Поиск..." value={searchItems} onChange={onSearchItems} />
             <img className="search__img" src="./img/svg/search.svg"></img>
           </div>
         </div>
         <section className="content__cards">
-          {items.map((item) => (
+          {items
+          .filter((item) => item.title.toLowerCase().includes(searchItems.toLowerCase()))
+          .map((item) => (
           <Card 
             key={item.id}
             id={item.id}
