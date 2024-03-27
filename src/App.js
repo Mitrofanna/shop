@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Drawer from "./components/Drawer";
@@ -10,11 +11,9 @@ function App() {
   const [searchItems, setSearchItems] = useState('');
 
   useEffect(() => {
-    fetch('https://660317272393662c31ce874c.mockapi.io/items').then(res =>{
-      return res.json()
-    }).then(json => {
-      setItems(json)
-    });
+    axios.get('https://660317272393662c31ce874c.mockapi.io/items').then((res) => {
+      setItems(res.data)
+    })
   }, []);
 
   const onAddCart = (obj) => {  
@@ -34,7 +33,7 @@ function App() {
           <h1 className="content__title">{searchItems ? `Поиск по запросу: ${searchItems}` : `Все товары`}</h1>
           <div className="search">
             <input className="search__input" type="text" placeholder="Поиск..." value={searchItems} onChange={onSearchItems} />
-            <img className="search__img" src="./img/svg/search.svg"></img>
+            <img className="search__img" src="./img/svg/search.svg" alt="Поиск."></img>
           </div>
         </div>
         <section className="content__cards">
