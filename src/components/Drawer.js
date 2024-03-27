@@ -1,35 +1,27 @@
-function Drawer(props) {
+function Drawer({onCloseCart, items = []}) {
     return (
         <aside className="drawer">
         <div className="drawer__block">
           <div className="drawer__title-wrapper">
             <h2 className="drawer__title">Корзина</h2>
-            <button className="drawer__button drawer__button-delete" onClick={props.onCloseCart}>
+            <button className="drawer__button drawer__button-delete" onClick={onCloseCart}>
               <span className="visually-hidden">Закрыть корзину.</span>
             </button>
           </div>
           <div className="drawer__list">
-            <div className="drawer__item">
-              <img className="drawer__img" src="./img/content/1.jpg" width="70" height={70} alt="Изображение товара." />
-              <div>
-                <p className="drawer__title">Желтые кроссы.</p>
-                <b>1200 p.</b>
+            {items.map((item) => (
+              <div className="drawer__item">
+                <img className="drawer__img" src={item.imageUrl} width="70" height={70} alt="Изображение товара." />
+                <div>
+                  <p className="drawer__title">{item.title}</p>
+                  <b>{item.price}</b>
                 </div>
                 <button className="drawer__button drawer__button-delete">
                   <span className="visually-hidden">Удалить из корзины.</span>
                 </button>
               </div>
-            <div className="drawer__item">
-              <img className="drawer__img" src="./img/content/1.jpg" width="70" height={70} alt="Изображение товара." />
-              <div>
-                <p className="drawer__title">Желтые кроссы.</p>
-                <b>1200 p.</b>
-                </div>
-                <button className="drawer__button drawer__button-delete">
-                  <span className="visually-hidden">Удалить из корзины.</span>
-                </button>
-              </div>
-          </div>
+            ))}
+            </div>
             <ul className="drawer__total">
               <li className="drawer__total-item">
                 <span>Итого:</span>

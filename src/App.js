@@ -5,6 +5,7 @@ import Drawer from "./components/Drawer";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [cartOpened, setCartOpened] = useState(false);
 
   useEffect(() => {
@@ -15,9 +16,14 @@ function App() {
     });
   }, []);
 
+  const onAddCart = (obj) => {
+    setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
+  };
+  
+  console.log(cartItems);
   return (
     <div className="wrapper">
-      {cartOpened && <Drawer onCloseCart={() => setCartOpened(false)}/>}
+      {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)}/>}
       <Header onClickCart={() => setCartOpened(true)} />
       <main className="content">
         <div className="content__wrapper">
@@ -35,8 +41,8 @@ function App() {
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}
-            onClickAddCart={() => console.log('add to cart')}
-            onClickFavorite={() => console.log('add favorite')}
+            onClickAddCart={(obj) => onAddCart(obj)}
+            onClickFavorite={() => console.log('fav')}
           />
           ))}
         </section>
