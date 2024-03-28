@@ -14,10 +14,19 @@ function App() {
     axios.get('https://660317272393662c31ce874c.mockapi.io/items').then((res) => {
       setItems(res.data)
     })
+    axios.get('https://660317272393662c31ce874c.mockapi.io/cart').then((res) => {
+      setCartItems(res.data)
+    })
   }, []);
 
-  const onAddCart = (obj) => {  
-      setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
+  const onAddItem = (obj) => {
+    axios.post('https://660317272393662c31ce874c.mockapi.io/cart', obj); 
+    setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
+  };
+
+  const onRemoveItem = (id) => {
+    axios.delete(`https://660317272393662c31ce874c.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));//фильтрует удаленный обьект из корзины 
   };
   
   const onSearchItems = (event) => {
@@ -26,7 +35,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)}/>}
+      {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
       <Header onClickCart={() => setCartOpened(true)} />
       <main className="content">
         <div className="content__wrapper">
@@ -46,7 +55,7 @@ function App() {
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}
-            onClickAddCart={(obj) => onAddCart(obj)}
+            onClickAddCart={(obj) => onAddItem(obj)}
             onClickFavorite={() => console.log('fav')}
           />
           ))}
