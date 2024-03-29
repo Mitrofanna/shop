@@ -38,6 +38,13 @@ function App() {
       {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
       <Header onClickCart={() => setCartOpened(true)} />
       <main className="content">
+        <section className="promo">
+          <img className="promo__small" src="./img/promo/slide1.png" width="120" height="240"></img>
+          <img className="promo__midddle" src="./img/promo/slide2.png" width="140" height="280"></img>
+          <img className="promo__big" src="./img/promo/slide3.png" width="160" height="320"></img>
+          <img className="promo__middle" src="./img/promo/slide4.png" width="140" height="280"></img>
+          <img className="promo__small" src="./img/promo/slide5.png" width="120" height="240"></img>
+        </section>
         <div className="content__wrapper">
           <h1 className="content__title">{searchItems ? `Поиск по запросу: ${searchItems}` : `Все товары`}</h1>
           <div className="search">

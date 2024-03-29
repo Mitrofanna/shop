@@ -4,9 +4,17 @@
     padding: 20px;
     width: 210px;
     text-align: center;
+    background-color: #ffffff;
+    color: #333;
+    box-sizing: border-box;
 
     &:hover {
       box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    &__title {
+      margin: 0;
+      padding: 4px 0 8px;
     }
   
     &__buy {

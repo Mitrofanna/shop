@@ -2,10 +2,9 @@ function Header(props) {
     return (
         <header className="header">
         <div className="header__left">
-          <img />
           <div className="header__info"> 
-            <h3 className="header__title">Mitrofan Shop</h3>
-            <p className="header__name">Лучший магазин</p>
+            <h3 className="header__title">Skate Fun</h3>
+            <p className="header__name"></p>
           </div>
         </div>
         <ul className="header__right">
