@@ -1,6 +1,21 @@
 .promo {
     margin: 20px 0 35px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    &__title {
+        text-align: center;
+        font-size: 46px;
+        line-height: 46px;
+        margin: 0;
+        padding-top: 10px;
+    }
+
+    &__title-orange {
+        padding-bottom: 30px;
+        color: #A25A30;
+    }
+    &__photos {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
