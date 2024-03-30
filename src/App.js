@@ -52,7 +52,8 @@ function App() {
         <div className="content__wrapper">
           <h1 className="content__title">{searchItems ? `Поиск по запросу: ${searchItems}` : `Все товары`}</h1>
           <div className="search">
-            <input className="search__input" type="text" placeholder="Поиск..." value={searchItems} onChange={onSearchItems} />
+            <input id="search" className="search__input" type="text" value={searchItems} onChange={onSearchItems} />
+            <label id="search" className="search__label">Поиск...</label>
             <img className="search__img" src="./img/svg/search.svg" alt="Поиск."></img>
           </div>
         </div>
