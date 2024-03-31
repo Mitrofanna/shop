@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Card from "./components/Card";
 import Drawer from "./components/Drawer";
 import Promo from "./components/Promo";
+import Footer from "./components/Footer";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -65,6 +66,7 @@ function App() {
           ))}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
