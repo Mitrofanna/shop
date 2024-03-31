@@ -4,19 +4,26 @@
     border-radius: 5px;
     padding: 10px 20px;
     width: 210px;
-    text-align: center;
     background-color: #ffffff;
     color: #333;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 
     &:hover {
       transition: 0.5s;
       transform: translateY(-5px);
     }
 
+    &__img {
+      margin: 0 auto;
+    }
+
     &__title {
       margin: 0;
       padding: 4px 0 8px;
+      flex: 1;
     }
   
     &__buy {
