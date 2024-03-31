@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Drawer from "./components/Drawer";
+import Promo from "./components/Promo";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -38,23 +39,14 @@ function App() {
       {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
       <Header onClickCart={() => setCartOpened(true)} />
       <main className="content">
-        <section className="promo">
-          <h2 className="promo__title">Выбери свой</h2>
-          <h2 className="promo__title promo__title-orange">скейтборд</h2>
-          <div className="promo__photos">
-            <img className="promo__small" src="./img/promo/slide1.png" width="120" height="240"></img>
-            <img className="promo__midddle" src="./img/promo/slide2.png" width="140" height="280"></img>
-            <img className="promo__big" src="./img/promo/slide3.png" width="160" height="320"></img>
-            <img className="promo__middle" src="./img/promo/slide4.png" width="140" height="280"></img>
-            <img className="promo__small" src="./img/promo/slide5.png" width="120" height="240"></img>
-          </div>
-        </section>
+        <Promo />
         <div className="content__wrapper">
           <h1 className="content__title">{searchItems ? `Поиск по запросу: ${searchItems}` : `Все товары`}</h1>
           <div className="search">
             <input id="search" className="search__input" type="text" value={searchItems} onChange={onSearchItems} />
             <label id="search" className="search__label">Поиск...</label>
-            <img className="search__img" src="./img/svg/search.svg" alt="Поиск."></img>
+            <svg className="search__img" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 18 18" fill="#fff"><path d="m17.7 16.06-3.48-3.48a7.63 7.63 0 0 0 1.53-4.7c0-4.4-3.48-7.88-7.88-7.88A7.81 7.81 0 0 0 0 7.88c0 4.4 3.48 7.87 7.88 7.87 1.73 0 3.37-.61 4.7-1.53l3.48 3.47c.2.2.4.31.82.31.6 0 1.12-.51 1.12-1.13 0-.2-.1-.5-.3-.81ZM2.24 7.88a5.67 5.67 0 0 1 5.63-5.63 5.67 5.67 0 0 1 5.62 5.63 5.67 5.67 0 0 1-5.63 5.62 5.67 5.67 0 0 1-5.62-5.63Z"/></svg>
+            {/* <img className="search__img" src="./img/svg/search.svg" alt="Поиск."></img> */}
           </div>
         </div>
         <section className="content__cards">

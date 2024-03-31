@@ -1,13 +1,17 @@
 .content {
     &__cards {
-      margin: 20px 80px;
+      margin: 20px 70px;
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 30px;
     }
 
     &__wrapper {
       display: flex;
       justify-content: space-between;
+    }
+
+    &__title {
+      margin: 0;
     }
   }

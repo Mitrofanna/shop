@@ -1,11 +1,10 @@
 .search {
     position: relative;
-    width: 250px;
-    box-sizing: border-box;
     cursor: pointer;
 
     &__input {
-        width: 100%;
+        width: 250px;
+        box-sizing: border-box;
         padding: 10px;
         border: 1px solid #f2f2f2;
         background-color: transparent;
@@ -13,6 +12,7 @@
         outline: none;
         color: #f2f2f2;
         font-size: 20px;
+        cursor: pointer;
     }
 
     &__label {
@@ -27,11 +27,12 @@
     &__img {
         position: absolute;
         top: 15px;
-        right: 7px;
+        right: 20px;
+        fill: #f2f2f2;
     }
 }
 
-.search__input:active .search__label,
+.search:active .search__label,
 .search:hover .search__label,
 .search:focus .search__label {
     color: #A25A30;
@@ -44,6 +45,12 @@
 
 .search:active .search__input,
 .search:hover .search__input,
-.search__focus .search__input {
+.search:focus .search__input {
     border: 1px solid #A25A30;
+}
+
+.search:hover .search__img,
+.search:focus .search__img,
+.search:active .search__img {
+    fill: #A25A30;
 }
