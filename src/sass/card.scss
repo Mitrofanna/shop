@@ -1,4 +1,5 @@
 .card {
+    position: relative;
     border: 2px solid #A25A30;
     border-radius: 5px;
     padding: 10px 20px;
@@ -54,5 +55,16 @@
 
     &__icon {
       padding-top: 3px;
+    }
+
+    &__button-favorite {
+      cursor: pointer;
+      position: absolute;
+      top: -1px;
+      right: 20px;
+    }
+
+    &__favorite-add {
+      fill: #A25A30;
     }
   }
