@@ -1,3 +1,5 @@
+import EmptyCart from "./Empty-cart";
+
 function Drawer({onCloseCart, onRemove, items = []}) {
     return (
         <aside className="drawer">
@@ -42,7 +44,7 @@ function Drawer({onCloseCart, onRemove, items = []}) {
               </button>
             </div>
             ) : (
-              <h1>Ваша корзина пуста</h1>
+              <EmptyCart />
             )} 
         </div>
       </aside>
