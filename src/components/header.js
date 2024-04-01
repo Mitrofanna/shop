@@ -28,7 +28,7 @@ function Header({onClickCart, items = []}) {
               </clipPath>
               </defs>
             </svg>
-            <span>{items.length}</span>
+            <span>{items.length > 0 && items.length}</span>
             <span className="visually-hidden">Избранное</span>
           </li>
           <li>
