@@ -5,6 +5,7 @@ import Card from "./components/Card";
 import Drawer from "./components/Drawer";
 import Promo from "./components/Promo";
 import Footer from "./components/Footer";
+import Empty from "./components/Empty";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -41,6 +42,8 @@ function App() {
     setSearchItems(event.target.value);
   };
 
+  const itemsSorted = items.filter((item) => item.title.toLowerCase().includes(searchItems.toLowerCase()));
+
   return (
     <div className="wrapper">
       {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
@@ -56,19 +59,20 @@ function App() {
           </div>
         </div>
         <section className="content__cards">
-          {items
-          .filter((item) => item.title.toLowerCase().includes(searchItems.toLowerCase()))
-          .map((item) => (
+         {itemsSorted.length > 0 ? 
+          itemsSorted.map((item) => (
           <Card 
             key={item.id}
             id={item.id}
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}
+            isFavorite={item.isFavorite}
+            isAdded={item.isAdded}
             onClickAddCart={(obj) => onAddItem(obj)}
             onClickFavorite={(obj) => onAddFavorites(obj)}
           />
-          ))}
+          )) : <Empty />}
         </section>
       </main>
       <Footer />

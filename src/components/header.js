@@ -2,6 +2,7 @@ function Header({onClickCart, items = []}) {
     return (
       <header className="header">
         <div className="header__left">
+          <img className="header__logo" src="./img/content/skate.png" width="50" height="50" alt="Логотип 'Go Skate'."></img>
           <div className="header__info"> 
             <p className="header__title">Go Skate</p>
             <p className="header__name">магазин скейтбордов</p>

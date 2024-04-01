@@ -6,6 +6,11 @@
   border-bottom: 2px solid #A25A30;
   z-index: 1;
 
+  &__left {
+    display: flex;
+    color:#A25A30;
+  }
+
   &__right {
     width: 230px;
     margin: 0;
@@ -22,6 +27,7 @@
   &__title {
     padding: 0;
     margin: 0;
+    font-size: 18px;
   }
 
   &__name {

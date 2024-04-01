@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Card({imageUrl, id, title, price, onClickAddCart, onClickFavorite}) {
+function Card({imageUrl, title, id, price, onClickAddCart, onClickFavorite}) {
   const [isAdded, setIsAdded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -9,7 +9,7 @@ function Card({imageUrl, id, title, price, onClickAddCart, onClickFavorite}) {
     setIsAdded(!isAdded);
   };
 
-  const onClickFavoriteBtn =() => {
+  const onClickFavoriteButton =() => {
     onClickFavorite({id, title, imageUrl, price});
     setIsFavorite(!isFavorite);
   }
@@ -23,7 +23,7 @@ function Card({imageUrl, id, title, price, onClickAddCart, onClickFavorite}) {
           <p className="card__price">Цена :</p>
           <b>{price} ₽</b>
         </div>
-        <div className="card__button-favorite" onClick={onClickFavoriteBtn}>
+        <div className="card__button-favorite" onClick={onClickFavoriteButton}>
           <svg className={isFavorite && 'card__favorite-add'} aria-hidden="true" focusable="false" fill="#c3c3c3" width="17" height="18" viewbox="0 0 17 18" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"></path>
           </svg>

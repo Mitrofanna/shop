@@ -1,4 +1,4 @@
-import EmptyCart from "./Empty-cart";
+import Empty from "./Empty";
 
 function Drawer({onCloseCart, onRemove, items = []}) {
     return (
@@ -44,7 +44,7 @@ function Drawer({onCloseCart, onRemove, items = []}) {
               </button>
             </div>
             ) : (
-              <EmptyCart />
+              <Empty />
             )} 
         </div>
       </aside>
