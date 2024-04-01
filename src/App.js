@@ -11,6 +11,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [cartOpened, setCartOpened] = useState(false);
   const [searchItems, setSearchItems] = useState('');
+  const [favorites, setIsFavorites] = useState([]);
 
   useEffect(() => {
     axios.get('https://660317272393662c31ce874c.mockapi.io/items').then((res) => {
@@ -26,6 +27,11 @@ function App() {
     setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
   };
 
+  const onAddFavorites = (obj) => {
+    axios.post('https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites', obj); 
+    setIsFavorites(prev => [...prev, obj]);
+  };
+
   const onRemoveItem = (id) => {
     axios.delete(`https://660317272393662c31ce874c.mockapi.io/cart/${id}`);
     setCartItems((prev) => prev.filter((item) => item.id !== id));//фильтрует удаленный обьект из корзины 
@@ -38,7 +44,7 @@ function App() {
   return (
     <div className="wrapper">
       {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
-        <Header onClickCart={() => setCartOpened(true)} />
+        <Header onClickCart={() => setCartOpened(true)} items={favorites} />
       <main className="content">
         <Promo />
         <div className="content__wrapper">
@@ -60,7 +66,7 @@ function App() {
             price={item.price}
             imageUrl={item.imageUrl}
             onClickAddCart={(obj) => onAddItem(obj)}
-            onClickFavorite={() => console.log('fav')}
+            onClickFavorite={(obj) => onAddFavorites(obj)}
           />
           ))}
         </section>
