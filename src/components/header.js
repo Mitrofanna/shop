@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Header({onClickCart, items = []}) {
     return (
       <header className="header">
-        <Link to="/">
+        <Link className="header__link" to="/">
           <div className="header__left">
             <img className="header__logo" src="./img/content/skate.png" width="50" height="50" alt="Логотип 'Go Skate'."></img>
             <div className="header__info"> 
@@ -21,7 +21,7 @@ function Header({onClickCart, items = []}) {
             </svg>
             <span className="header__cart-value">1205 p.</span>
           </li>
-          <Link to="/favorites">
+          <Link to="/favorites" className="header__link">
             <li>
               <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_60_590)">
@@ -33,7 +33,7 @@ function Header({onClickCart, items = []}) {
                 </clipPath>
                 </defs>
               </svg>
-              <span>{items.length > 0 && items.length}</span>
+              <span className="header__liked">{items.length > 0 && items.length}</span>
               <span className="visually-hidden">Избранное</span>
             </li>
           </Link>

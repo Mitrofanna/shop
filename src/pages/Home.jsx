@@ -27,8 +27,6 @@ function Home({items, searchItems, onAddItem, onAddFavorites, onSearchItems}) {
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}
-            isFavorite={item.isFavorite}
-            isAdded={item.isAdded}
             onClickAddCart={(obj) => onAddItem(obj)}
             onClickFavorite={(obj) => onAddFavorites(obj)}
           />
