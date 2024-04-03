@@ -31,12 +31,15 @@ function App() {
     setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
   };
 
-  const onAddFavorites = (obj) => {
+  const onAddFavorites = async (obj) => {
     if(favorites.find(item => item.id === obj.id)) {
       axios.delete(`https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites/${obj.id}`);
+      //сразу обновляет состояние списка и удаляет выбранный элемент
+      setFavorites((prev) => prev.filter((item) => item.id !== obj.id));;
     } else {
-      axios.post('https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites', obj); 
-      setFavorites(prev => [...prev, obj]);
+      //ждет сначала данные с сервера, потом обновляет состояние
+      const {data} = await axios.post('https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites', obj); 
+      setFavorites(prev => [...prev, data]);
     }
   };
 
