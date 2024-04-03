@@ -26,9 +26,9 @@ function App() {
     });
   }, []);
 
-  const onAddItem = (obj) => {
-    axios.post('https://660317272393662c31ce874c.mockapi.io/cart', obj); 
-    setCartItems(prev => [...prev, obj]);//обновляет пред. состояние
+  const onAddItem = async (obj) => {
+    const {data} = await axios.post('https://660317272393662c31ce874c.mockapi.io/cart', obj); 
+    setCartItems(prev => [...prev, data]);//обновляет пред. состояние
   };
 
   const onAddFavorites = async (obj) => {
