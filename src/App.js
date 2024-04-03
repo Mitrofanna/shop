@@ -27,19 +27,27 @@ function App() {
   }, []);
 
   const onAddItem = async (obj) => {
-    const {data} = await axios.post('https://660317272393662c31ce874c.mockapi.io/cart', obj); 
-    setCartItems(prev => [...prev, data]);//обновляет пред. состояние
+    try {
+      const {data} = await axios.post('https://660317272393662c31ce874c.mockapi.io/cart', obj); 
+      setCartItems(prev => [...prev, data]);//обновляет пред. состояние
+    } catch(error) {
+      alert('что-то пошло не так', error)
+    }
   };
 
   const onAddFavorites = async (obj) => {
-    if(favorites.find(item => item.id === obj.id)) {
-      axios.delete(`https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites/${obj.id}`);
-      //сразу обновляет состояние списка и удаляет выбранный элемент
-      setFavorites((prev) => prev.filter((item) => item.id !== obj.id));;
-    } else {
-      //ждет сначала данные с сервера, потом обновляет состояние
-      const {data} = await axios.post('https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites', obj); 
-      setFavorites(prev => [...prev, data]);
+    try {
+      if(favorites.find(item => item.id === obj.id)) {
+        axios.delete(`https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites/${obj.id}`);
+        //сразу обновляет состояние списка и удаляет выбранный элемент
+        setFavorites((prev) => prev.filter((item) => item.id !== obj.id));;
+      } else {
+        //ждет сначала данные с сервера, потом обновляет состояние
+        const {data} = await axios.post('https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites', obj); 
+        setFavorites(prev => [...prev, data]);
+      }
+    } catch(error) {
+      alert('что-то пошло не так', error);
     }
   };
 
