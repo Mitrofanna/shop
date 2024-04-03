@@ -15,7 +15,7 @@ function Favorites({items, onAddItem, onAddFavorites}) {
                     title={item.title}
                     price={item.price}
                     imageUrl={item.imageUrl}
-                    favorited={true}
+                    favorited
                     onClickAddCart={(obj) => onAddItem(obj)}
                     onClickFavorite={onAddFavorites}
                 />

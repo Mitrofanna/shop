@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function Card({imageUrl, title, id, price, favorited=false, onClickAddCart, onClickFavorite}) {
-  const [isAdded, setIsAdded] = useState(false);
+function Card({imageUrl, title, id, price, favorited=false, added =false, onClickAddCart, onClickFavorite}) {
+  const [isAdded, setIsAdded] = useState(added);
   const [isFavorite, setIsFavorite] = useState(favorited);
 
   const onClickAddButton = () => {
