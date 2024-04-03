@@ -1,7 +1,6 @@
 import Promo from "../components/Promo";
 import Empty from "../components/Empty";
 import Card from "../components/Card";
-import Favorites from "./Favorites";
 
 function Home({items, searchItems, onAddItem, onAddFavorites, onSearchItems, cartItems, favorites}) {
     const itemsSorted = items.filter((item) => item.title.toLowerCase().includes(searchItems.toLowerCase()));
@@ -28,6 +27,7 @@ function Home({items, searchItems, onAddItem, onAddFavorites, onSearchItems, car
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}
+            loading={false}
             favorited={favorites.some((obj) => Number(obj.id) === Number(item.id))}
             added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
             onClickAddCart={(obj) => onAddItem(obj)}
