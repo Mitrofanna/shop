@@ -2,17 +2,20 @@ import Promo from "../components/Promo";
 import Empty from "../components/Empty";
 import Card from "../components/Card";
 import ContentLoader from "react-content-loader";
+import { useContext } from "react";
+import AppContext from "../app-context";
 
 function Home({
   items, 
   searchItems, 
   onAddItem, 
   onAddFavorites, 
-  onSearchItems, 
-  cartItems, 
-  favorites, 
+  onSearchItems,
+  // favorites, 
   isLoading
 }) {
+  const {favorites} = useContext(AppContext);
+  
   const itemsSorted = items.filter((item) => item.title.toLowerCase().includes(searchItems.toLowerCase()));
     
   return (
@@ -57,7 +60,6 @@ function Home({
             price={item.price}
             imageUrl={item.imageUrl}
             favorited={favorites.some((obj) => Number(obj.id) === Number(item.id))}
-            added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
             onClickAddCart={(obj) => onAddItem(obj)}
             onClickFavorite={(obj) => onAddFavorites(obj)}
           />

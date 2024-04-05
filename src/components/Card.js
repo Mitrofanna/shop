@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "../app-context";
 
 function Card({
   imageUrl,
@@ -6,16 +7,17 @@ function Card({
   id, 
   price, 
   favorited = false, 
-  added = false,
   onClickAddCart, 
   onClickFavorite
 }) {
-  const [isAdded, setIsAdded] = useState(added);
+  const {isItemChecked} = useContext(AppContext);
+  const isChecked = isItemChecked(title);
+  console.log(title, isChecked);
+
   const [isFavorite, setIsFavorite] = useState(favorited);
 
   const onClickAddButton = () => {
     onClickAddCart({id, title, imageUrl, price});
-    setIsAdded(!isAdded);
   };
 
   const onClickFavoriteButton =() => {
@@ -38,7 +40,7 @@ function Card({
             </svg>
             <span className="visually-hidden">Добавить в избранное.</span>
           </div>
-          <button className={`card__button ${!isAdded ? 'card__button-default' : 'card__button-active'}`} onClick={onClickAddButton}>
+          <button className={`card__button ${isChecked ? 'card__button-active' : 'card__button-default'}`} onClick={onClickAddButton}>
             <span className="visually-hidden">Добавить в корзину.</span>
           </button>
         </div>

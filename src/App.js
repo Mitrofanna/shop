@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext} from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header";
@@ -6,8 +6,7 @@ import Drawer from "./components/Drawer";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
-
-const AppContext = createContext({});
+import AppContext from "./app-context";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -61,9 +60,13 @@ function App() {
     }
   };
 
+  const isItemChecked = (title) => {
+    return cartItems.some((obj) => obj.title === title);
+  };
+
   const onRemoveItem = (id) => {
     axios.delete(`https://660317272393662c31ce874c.mockapi.io/cart/${id}`);
-    setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));;
+    setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
   };
   
   const onSearchItems = (event) => {
@@ -71,7 +74,7 @@ function App() {
   };
 
   return (
-    <AppContext.Provider value={{items, cartItems, favorites}}>
+    <AppContext.Provider value={{items, cartItems, favorites, isItemChecked}}>
     <div className="wrapper">
       {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
       <Header onClickCart={() => setCartOpened(true)} items={favorites} />
@@ -83,14 +86,12 @@ function App() {
             onAddItem={onAddItem}
             onAddFavorites={onAddFavorites}
             onSearchItems={onSearchItems}
-            cartItems={cartItems}
-            favorites={favorites}
+            // favorites={favorites}
             isLoading={isLoading}
           />}>
           </Route>
           <Route path="/favorites" element={
           <Favorites
-            items={favorites}
             onAddFavorites={onAddFavorites} 
           />}>
           </Route>
