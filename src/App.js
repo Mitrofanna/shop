@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext} from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header";
@@ -6,6 +6,8 @@ import Drawer from "./components/Drawer";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+
+const AppContext = createContext({});
 
 function App() {
   const [items, setItems] = useState([]);
@@ -69,6 +71,7 @@ function App() {
   };
 
   return (
+    <AppContext.Provider value={{items, cartItems, favorites}}>
     <div className="wrapper">
       {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
       <Header onClickCart={() => setCartOpened(true)} items={favorites} />
@@ -94,6 +97,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+  </AppContext.Provider>
   );
 }
 
