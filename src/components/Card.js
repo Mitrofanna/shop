@@ -12,7 +12,6 @@ function Card({
 }) {
   const {isItemChecked} = useContext(AppContext);
   const isChecked = isItemChecked(title);
-  console.log(title, isChecked);
 
   const [isFavorite, setIsFavorite] = useState(favorited);
 

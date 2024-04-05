@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import AppContext from "./app-context";
+import Orders from "./pages/Orders";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -46,12 +47,10 @@ function App() {
 
   const onAddFavorites = async (obj) => {
     try {
-      if(favorites.find(item => Number(item.id) === Number(obj.id))) {
+      if(favorites.find(item => item.title === obj.title)) {
         axios.delete(`https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites/${obj.id}`);
-        //сразу обновляет состояние списка и удаляет выбранный элемент
-        setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));;
+        setFavorites((prev) => prev.filter((item) => item.title !== obj.title));;
       } else {
-        //ждет сначала данные с сервера, потом обновляет состояние
         const {data} = await axios.post('https://660add09ccda4cbc75dbf3f3.mockapi.io/favorites', obj); 
         setFavorites(prev => [...prev, data]);
       }
@@ -86,14 +85,14 @@ function App() {
             onAddItem={onAddItem}
             onAddFavorites={onAddFavorites}
             onSearchItems={onSearchItems}
-            // favorites={favorites}
             isLoading={isLoading}
           />}>
           </Route>
           <Route path="/favorites" element={
-          <Favorites
-            onAddFavorites={onAddFavorites} 
-          />}>
+            <Favorites onAddFavorites={onAddFavorites} />}>
+          </Route>
+          <Route path="/orders" element={
+            <Orders />}>
           </Route>
       </Routes>
       <Footer />
