@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import { API_CART } from "../api";
+import axios from "axios";
 import Empty from "./Empty";
 import Info from "./Info";
 import AppContext from "../app-context";
@@ -8,7 +10,8 @@ function Drawer() {
 
   const [isOrdered, setIsOrdered] = useState(false);
 
-  const onClickOrder = () => {
+  const onClickOrder = async() => {
+    await axios.put(API_CART, []);
     setIsOrdered(true);
     setCartItems([]);
   };
