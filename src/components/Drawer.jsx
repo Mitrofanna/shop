@@ -1,10 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Empty from "./Empty";
 import Info from "./Info";
 import AppContext from "../app-context";
 
 function Drawer() {
-  const {onCloseCart, cartItems, onRemoveItem} = useContext(AppContext);
+  const {onCloseCart, cartItems, onRemoveItem, setCartItems} = useContext(AppContext);
+
+  const [isOrdered, setIsOrdered] = useState(false);
+
+  const onClickOrder = () => {
+    setIsOrdered(true);
+    setCartItems([]);
+  };
 
     return (
         <aside className="drawer">
@@ -43,13 +50,11 @@ function Drawer() {
                   <b>1300 p.</b>
                 </li>
               </ul>
-              <button className="drawer__total-button">
-                
+              <button className="drawer__total-button" onClick={onClickOrder}>
               </button>
             </div>
             ) : (
-              // <Empty />
-              <Info />
+              isOrdered ? <Info /> : <Empty /> 
             )} 
         </div>
       </aside>

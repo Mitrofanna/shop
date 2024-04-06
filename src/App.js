@@ -83,7 +83,8 @@ function App() {
   return (
     <AppContext.Provider value={{
       items,
-      cartItems, 
+      cartItems,
+      setCartItems, 
       favorites, 
       isItemChecked, 
       setCartOpened, 
