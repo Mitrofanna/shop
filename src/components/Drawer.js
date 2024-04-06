@@ -38,9 +38,8 @@ function Drawer({onCloseCart, onRemove, items = []}) {
                   <b>1300 p.</b>
                 </li>
               </ul>
-              <button className="button drawer__total-button">
-                Оформить заказ
-                <img className="drawer__arrow" src="./img/svg/arrow.svg" width={14} height={12} alt="Сюда." />
+              <button className="drawer__total-button">
+                
               </button>
             </div>
             ) : (
