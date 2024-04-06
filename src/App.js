@@ -72,24 +72,39 @@ function App() {
     setSearchItems(event.target.value);
   };
 
+  const onCloseCart = () => {
+    setCartOpened(false);
+  }
+
+  const onOpenCart = () => {
+    setCartOpened(true);
+  }
+
   return (
-    <AppContext.Provider value={{items, cartItems, favorites, isItemChecked}}>
+    <AppContext.Provider value={{
+      items,
+      cartItems, 
+      favorites, 
+      isItemChecked, 
+      setCartOpened, 
+      onCloseCart, 
+      onOpenCart, 
+      onRemoveItem,
+      onAddFavorites,
+      onAddItem,
+      searchItems,
+      onSearchItems,
+      isLoading
+      }}>
     <div className="wrapper">
-      {cartOpened && <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem}/>}
-      <Header onClickCart={() => setCartOpened(true)} items={favorites} />
+      {cartOpened && <Drawer />}
+      <Header />
         <Routes>
           <Route path="/" element={
-          <Home
-            items={items}
-            searchItems={searchItems}
-            onAddItem={onAddItem}
-            onAddFavorites={onAddFavorites}
-            onSearchItems={onSearchItems}
-            isLoading={isLoading}
-          />}>
+            <Home />}>
           </Route>
           <Route path="/favorites" element={
-            <Favorites onAddFavorites={onAddFavorites} />}>
+            <Favorites />}>
           </Route>
           <Route path="/orders" element={
             <Orders />}>

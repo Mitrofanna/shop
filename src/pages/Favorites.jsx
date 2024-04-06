@@ -3,8 +3,8 @@ import Empty from "../components/Empty";
 import AppContext from "../app-context";
 import { useContext } from "react";
 
-function Favorites({onAddItem, onAddFavorites}) {
-    const {favorites} = useContext(AppContext);
+function Favorites() {
+    const {favorites, onAddFavorites, onAddItem} = useContext(AppContext);
 
     return (
         <main className="content">

@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import Empty from "./Empty";
+import Info from "./Info";
+import AppContext from "../app-context";
 
-function Drawer({onCloseCart, onRemove, items = []}) {
+function Drawer() {
+  const {onCloseCart, cartItems, onRemoveItem} = useContext(AppContext);
+
     return (
         <aside className="drawer">
         <div className="drawer__block">  
@@ -10,17 +15,17 @@ function Drawer({onCloseCart, onRemove, items = []}) {
               <span className="visually-hidden">Закрыть корзину.</span>
             </button>
           </div>
-          {items.length > 0 ? (
+          {cartItems.length > 0 ? (
             <div className="drawer__full">
               <div className="drawer__list">
-              {items.map((item) => (
+              {cartItems.map((item) => (
                 <div key={item.id} className="drawer__item">
                   <img className="drawer__img" src={item.imageUrl} width="70" height={70} alt="Изображение товара." />
                   <div>
                     <p className="drawer__title">{item.title}</p>
                     <b>{item.price}</b>
                   </div>
-                  <button className="drawer__button drawer__button-delete" onClick={() => onRemove(item.id)}>
+                  <button className="drawer__button drawer__button-delete" onClick={() => onRemoveItem(item.id)}>
                     <span className="visually-hidden">Удалить из корзины.</span>
                   </button>
                 </div>
@@ -43,7 +48,8 @@ function Drawer({onCloseCart, onRemove, items = []}) {
               </button>
             </div>
             ) : (
-              <Empty />
+              // <Empty />
+              <Info />
             )} 
         </div>
       </aside>
