@@ -29,4 +29,17 @@
       margin: 0;
       margin-top: 10px;
     }
+
+    &__img-order1 {
+      position: absolute;
+      right: 0;
+      border-radius: 5px;
+    }
+
+    &__img-order2 {
+      position: absolute;
+      right: 0;
+      bottom : 30px;
+      border-radius: 5px;
+    }
   }
