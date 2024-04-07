@@ -7,17 +7,16 @@ import AppContext from "../app-context";
 
 function Drawer() {
   const {onCloseCart, cartItems, onRemoveItem, setCartItems} = useContext(AppContext);
-
   const [isOrdered, setIsOrdered] = useState(false);
   const [orderId, setOrderId] = useState(null);
 
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
+  
   const onClickOrder = async () => {
     try {
       const { data } = await axios.post(API_ORDERS, {items: cartItems});//сохр. массив корзины для страницы заказов
       setOrderId(data.id);
-      console.log(data);
       setIsOrdered(true);
       setCartItems([]);
 
@@ -60,12 +59,12 @@ function Drawer() {
                 <li className="drawer__total-item">
                   <span>Итого:</span>
                   <div className="drawer__dashed"></div>
-                  <b>1200 p.</b>
+                  <b>{totalPrice} руб.</b>
                 </li>
                 <li className="drawer__total-item">
                   <span>С доставкой</span>
                   <div className="drawer__dashed"></div>
-                  <b>1300 p.</b>
+                  <b>{totalPrice + 1000} руб.</b>
                 </li>
               </ul>
               <button className="drawer__total-button" onClick={onClickOrder} >
