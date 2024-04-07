@@ -11,14 +11,21 @@ function Drawer() {
   const [isOrdered, setIsOrdered] = useState(false);
   const [orderId, setOrderId] = useState(null);
 
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const onClickOrder = async () => {
     try {
       const { data } = await axios.post(API_ORDERS, {items: cartItems});//сохр. массив корзины для страницы заказов
       setOrderId(data.id);
       console.log(data);
-      // axios.put(API_CART, []);
       setIsOrdered(true);
       setCartItems([]);
+
+      for(let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        await axios.delete(API_CART + '/' + item.id);
+        await delay(1000);
+      }
     } catch(error) {
       alert('что-то пошло не так', error)
     }
@@ -61,7 +68,7 @@ function Drawer() {
                   <b>1300 p.</b>
                 </li>
               </ul>
-              <button className="drawer__total-button" onClick={onClickOrder}>
+              <button className="drawer__total-button" onClick={onClickOrder} >
               </button>
             </div>
             ) : (
