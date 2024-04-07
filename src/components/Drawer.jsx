@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { API_CART } from "../api";
+import { API_CART, API_ORDERS } from "../api";
 import axios from "axios";
 import Empty from "./Empty";
 import Info from "./Info";
@@ -9,11 +9,19 @@ function Drawer() {
   const {onCloseCart, cartItems, onRemoveItem, setCartItems} = useContext(AppContext);
 
   const [isOrdered, setIsOrdered] = useState(false);
+  const [orderId, setOrderId] = useState(null);
 
-  const onClickOrder = async() => {
-    await axios.put(API_CART, []);
-    setIsOrdered(true);
-    setCartItems([]);
+  const onClickOrder = async () => {
+    try {
+      const { data } = await axios.post(API_ORDERS, {items: cartItems});//сохр. массив корзины для страницы заказов
+      setOrderId(data.id);
+      console.log(data);
+      // axios.put(API_CART, []);
+      setIsOrdered(true);
+      setCartItems([]);
+    } catch(error) {
+      alert('что-то пошло не так', error)
+    }
   };
 
     return (
@@ -57,7 +65,7 @@ function Drawer() {
               </button>
             </div>
             ) : (
-              isOrdered ? <Info /> : <Empty /> 
+              isOrdered ? <Info orderId={orderId} /> : <Empty /> 
             )} 
         </div>
       </aside>
