@@ -9,6 +9,7 @@ function Drawer() {
   const {onCloseCart, cartItems, onRemoveItem, setCartItems} = useContext(AppContext);
   const [isOrdered, setIsOrdered] = useState(false);
   const [orderId, setOrderId] = useState(null);
+  const [createdAt, setCreatedAt] = useState(null);
 
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -17,6 +18,7 @@ function Drawer() {
     try {
       const { data } = await axios.post(API_ORDERS, {items: cartItems});//сохр. массив корзины для страницы заказов
       setOrderId(data.id);
+      setCreatedAt(data.createdAt);
       setIsOrdered(true);
       setCartItems([]);
 
@@ -71,7 +73,7 @@ function Drawer() {
               </button>
             </div>
             ) : (
-              isOrdered ? <Info orderId={orderId} /> : <Empty /> 
+              isOrdered ? <Info createdAt={createdAt} orderId={orderId} /> : <Empty /> 
             )} 
         </div>
       </aside>
