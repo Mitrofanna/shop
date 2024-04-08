@@ -40,7 +40,7 @@ function App() {
         setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));//фильтрует удаленный обьект из корзины 
       } else {
         const {data} = await axios.post(API_CART, obj); 
-        setCartItems(prev => [...prev, data]);//обновляет пред. состояние
+        setCartItems(prev => [...prev, data]);
       }
     } catch(error) {
       alert('что-то пошло не так', error)
