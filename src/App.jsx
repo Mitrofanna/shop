@@ -108,13 +108,13 @@ function App() {
       {cartOpened && <Drawer />}
       <Header />
         <Routes>
-          <Route path="/" element={
+          <Route path="" element={
             <Home />}>
           </Route>
-          <Route path="/favorites" element={
+          <Route path="favorites" element={
             <Favorites />}>
           </Route>
-          <Route path="/orders" element={
+          <Route path="orders" element={
             <Orders />}>
           </Route>
       </Routes>
