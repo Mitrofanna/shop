@@ -26,6 +26,13 @@
 
   &__link {
     text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      .header__svg-scale {
+        transform: scale(1.3);
+      }
+    }
   }
 
   &__liked {
@@ -40,10 +47,6 @@
 
   &__name {
     margin: 0;
-  }
-
-  &__cart {
-    cursor: pointer;
   }
 
   &__cart-value {

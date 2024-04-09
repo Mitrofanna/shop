@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 
-import { API_ITEMS, API_FAVORITES, API_CART } from "./api";
+import { API_ITEMS, API_FAVORITES, API_CART} from "./api";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import Footer from "./components/Footer";
@@ -21,14 +21,18 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const cartResponse = await axios.get(API_CART);
-      const favoritesResponse = await axios.get(API_FAVORITES);
-      const itemsResponse = await axios.get(API_ITEMS);
-       
-      setIsLoading(false);
-      setCartItems(cartResponse.data);
-      setFavorites(favoritesResponse.data);
-      setItems(itemsResponse.data);
+      try{
+        const cartResponse = await axios.get(API_CART);
+        const favoritesResponse = await axios.get(API_FAVORITES);
+        const itemsResponse = await axios.get(API_ITEMS);
+         
+        setIsLoading(false);
+        setCartItems(cartResponse.data);
+        setFavorites(favoritesResponse.data);
+        setItems(itemsResponse.data);
+      } catch(error) {
+        alert('не загрузились данные');
+      }
     }  
     fetchData();
     
@@ -37,27 +41,28 @@ function App() {
   const onAddItem = async (obj) => {
     try {
       if(cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));//фильтрует удаленный обьект из корзины 
+        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+        axios.delete(API_CART + '/' + obj.id);
       } else {
         const {data} = await axios.post(API_CART, obj); 
         setCartItems(prev => [...prev, data]);
       }
     } catch(error) {
-      alert('что-то пошло не так', error)
+      alert('не получилось добавить в корзину', error)
     }
   };
 
   const onAddFavorites = async (obj) => {
     try {
       if(favorites.find(item => item.title === obj.title)) {
-        axios.delete(API_FAVORITES + '/' + obj.id);
         setFavorites((prev) => prev.filter((item) => item.title !== obj.title));;
+        axios.delete(API_FAVORITES + '/' + obj.id);
       } else {
         const {data} = await axios.post(API_FAVORITES, obj); 
         setFavorites(prev => [...prev, data]);
       }
     } catch(error) {
-      alert('что-то пошло не так', error);
+      alert('не получилось добавить в избранные', error);
     }
   };
 
