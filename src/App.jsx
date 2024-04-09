@@ -108,7 +108,7 @@ function App() {
       {cartOpened && <Drawer />}
       <Header />
         <Routes>
-          <Route path="/" element={
+          <Route path="/shop/" element={
             <Home />}>
           </Route>
           <Route path="/favorites" element={
