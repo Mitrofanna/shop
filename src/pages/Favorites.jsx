@@ -8,7 +8,7 @@ function Favorites() {
 
     return (
         <main className="content">
-            <img className={favorites.length > 0 ? "content__fav-background" : "content__fav-hidden"}  width="220" height="460" src="img/content/fav-background.png" alt="Фото скейтбордиста."></img>
+            <img className={favorites.length > 0 ? "content__fav-background" : "content__fav-hidden"}  width="220" height="460" src="../../img/content/fav-background.png" alt="Фото скейтбордиста."></img>
             <h1 className="content__title">Избранные товары</h1>
             <section className="content__cards">
                 {favorites.length > 0 ? 
