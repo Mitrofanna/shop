@@ -9,7 +9,7 @@ function Header() {
 
     return (
       <header className="header">
-        <Link className="header__link" to="/">
+        <Link className="header__link" to="/shop/">
           <div className="header__left">
             <img className="header__logo" src="./img/content/skate.png" width="50" height="50" alt="Логотип 'Go Skate'."></img>
             <div className="header__info"> 
